@@ -1,3 +1,4 @@
+import { products } from "../data/products.js";
 let productHTML = '';
 products.forEach((product)=>{
   productHTML += `

@@ -1,4 +1,3 @@
-document.querySelector('.js-product-grid').innerHTML = productHTML;
 import { cart,addToCart,UpdateCartQuantity } from '../data/cart.js';
 const timeoutIds = new Map();
 
