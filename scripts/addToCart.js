@@ -1,6 +1,5 @@
 document.querySelector('.js-product-grid').innerHTML = productHTML;
-
-let cart = [];
+import { cart } from '../data/cart.js';
 const timeoutIds = new Map();
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
