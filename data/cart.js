@@ -37,7 +37,7 @@ export function UpdateCartQuantity(){
   let cartQuantity = calculateCartQuantity();
   document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 }
-console.log(calculateCartQuantity());
+
 export function calculateCartQuantity(){
   var cartQuantity = 0;
   cart.forEach((item)=>{
@@ -56,4 +56,5 @@ export function removeFromCart(productid){
   cart = newCart;
   safeToStorage();
 }
+
 UpdateCartQuantity();
