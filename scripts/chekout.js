@@ -1,4 +1,4 @@
-import { cart,removeFromCart,calculateCartQuantity } from "../data/cart.js";
+import { cart,removeFromCart,calculateCartQuantity,updateQuantity,updateProductQuanrity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { centsToDollars } from "./utils/money.js";
 let cartSummaryHTML = '';
@@ -28,14 +28,15 @@ cart.forEach((cartItem)=>{
         </div>
         <div class="product-quantity">
           <span>
-            Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+            Quantity: <span class="quantity-label-${matchingProduct.id}">${cartItem.quantity}</span>
           </span>
           <span class="update-quantity-link link-primary js-update-link"
             data-product-id = "${matchingProduct.id}">
             Update
           </span>
-          <input class="quantity-input" type="number" value="">
-          <span class = "save-quantity-link link-primary">Save</span>
+          <input class="quantity-input js-input-${matchingProduct.id}" type="number" value="">
+          <span class = "save-quantity-link link-primary js-save-link"
+          data-product-id = "${matchingProduct.id}">Save</span>
           <span class="delete-quantity-link link-primary
           js-delete-link" data-product-id = "${matchingProduct.id}">
             Delete
@@ -128,4 +129,18 @@ document.querySelectorAll('.js-delete-link')
       
     });
   });
+
+  document.querySelectorAll('.js-save-link')
+    .forEach((ellement) => {
+      ellement.addEventListener('click', () => {
+        const ellementId = ellement.dataset.productId;
+        const inputfield = document.querySelector(`.js-input-${ellementId}`);
+        const newQuantity = Number(inputfield.value);
+        if (newQuantity > 0 && newQuantity < 100){
+          updateQuantity(ellementId, newQuantity);
+          updateCartQuantity();
+          updateProductQuanrity(ellementId, newQuantity);
+      }});
+      });
+
 updateCartQuantity();
