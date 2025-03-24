@@ -40,7 +40,10 @@ export function addToCart (productid,productValue){
 
 export function UpdateCartQuantity(){
   let cartQuantity = calculateCartQuantity();
-  document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+  const cartQuantityElement = document.querySelector('.js-cart-quantity');
+  if (cartQuantityElement) {
+    cartQuantityElement.innerHTML = cartQuantity;
+  }
 }
 
 export function calculateCartQuantity(){
