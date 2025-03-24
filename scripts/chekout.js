@@ -1,4 +1,4 @@
-import { cart,removeFromCart,calculateCartQuantity,updateQuantity,updateProductQuanrity } from "../data/cart.js";
+import { cart,removeFromCart,calculateCartQuantity,updateQuantity,updateProductQuanrity,updateDeliveryOption } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { centsToDollars } from "./utils/money.js";
 import {deliveryOptions} from "../data/deliveryOption.js";
@@ -94,7 +94,9 @@ function deliveryOptionsHTML(matchingProduct,cartItem){
 
       HTML +=
       `
-      <div class="delivery-option">
+      <div class="delivery-option js-delivery-option"
+      data-product-id="${matchingProduct.id}"
+      data-delivery-option-id="${deliveryOption.id}">
         <input type="radio"
           ${isChecked ? 'checked' : ''}
           class="delivery-option-input"
@@ -129,6 +131,15 @@ document.querySelectorAll('.js-delete-link')
       updateCartQuantity();
     });
   });
+
+document.querySelectorAll('.js-delivery-option')
+  .forEach((ellement) => {
+    ellement.addEventListener('click',() => {
+      const { productId, deliveryOptionId } = ellement.dataset;
+      console.log(productId, deliveryOptionId);
+      updateDeliveryOption(productId, deliveryOptionId);
+    })
+  })
 
   function updateCartQuantity(){
     let cartQuantity = calculateCartQuantity();
