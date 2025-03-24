@@ -3,6 +3,7 @@ import { cart,removeFromCart,calculateCartQuantity,updateQuantity,
 import { getProduct } from "../../data/products.js";
 import { centsToDollars } from "../utils/money.js";
 import {deliveryOptions,getDeliveryOption} from "../../data/deliveryOption.js";
+import { renrderPaymentSummary } from "./paymentSummary.js";
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 export function renderOrderSummary(){
@@ -121,6 +122,7 @@ export function renderOrderSummary(){
           `.js-cart-item-container-${productId}`);
         
         container.remove();
+        renrderPaymentSummary();
         updateCartQuantity();
       });
     });
@@ -131,6 +133,7 @@ export function renderOrderSummary(){
         const { productId, deliveryOptionId } = ellement.dataset;
         updateDeliveryOption(productId, deliveryOptionId);
         renderOrderSummary();
+        renrderPaymentSummary();
       })
     })
 
@@ -175,6 +178,7 @@ export function renderOrderSummary(){
             } else {
               cartContainer.classList.remove('is-editing-quantity');
             }
+            renrderPaymentSummary();
         }});
         });
 

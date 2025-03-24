@@ -65,4 +65,5 @@ export function renrderPaymentSummary(){
   `;
   document.querySelector('.js-payment-summary')
     .innerHTML = paymentSummaryHTML;
+  
 }
