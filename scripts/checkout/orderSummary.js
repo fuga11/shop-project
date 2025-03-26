@@ -4,6 +4,7 @@ import { getProduct } from "../../data/products.js";
 import { centsToDollars } from "../utils/money.js";
 import {deliveryOptions,getDeliveryOption} from "../../data/deliveryOption.js";
 import { renrderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 export function renderOrderSummary(){
@@ -124,6 +125,7 @@ export function renderOrderSummary(){
         container.remove();
         renrderPaymentSummary();
         updateCartQuantity();
+        renderCheckoutHeader();
       });
     });
 
@@ -134,6 +136,7 @@ export function renderOrderSummary(){
         updateDeliveryOption(productId, deliveryOptionId);
         renderOrderSummary();
         renrderPaymentSummary();
+        renderCheckoutHeader()
       })
     })
 
@@ -179,6 +182,7 @@ export function renderOrderSummary(){
               cartContainer.classList.remove('is-editing-quantity');
             }
             renrderPaymentSummary();
+            renderCheckoutHeader();
         }});
         });
 

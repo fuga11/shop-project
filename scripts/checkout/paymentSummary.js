@@ -1,4 +1,4 @@
-import { cart } from "../../data/cart.js";
+import { cart,calculateCartQuantity } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
 import {getDeliveryOption} from "../../data/deliveryOption.js";
 import {centsToDollars} from "../utils/money.js";
@@ -18,6 +18,7 @@ export function renrderPaymentSummary(){
   const TotalBeforeTaxCents = productPriceCents + shippingPriceCents;
   const TaxCents = TotalBeforeTaxCents * 0.1;
   const TotalCents = TotalBeforeTaxCents + TaxCents;
+  const quantity = calculateCartQuantity();
 
   const paymentSummaryHTML = `
   <div class="payment-summary-title">
@@ -25,7 +26,7 @@ export function renrderPaymentSummary(){
   </div>
 
   <div class="payment-summary-row">
-    <div>Items (3):</div>
+    <div>Items (${quantity}):</div>
     <div class="payment-summary-money">
     $${centsToDollars(productPriceCents)}
     </div>
