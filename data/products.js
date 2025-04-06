@@ -1,7 +1,35 @@
+import { centsToDollars } from "../scripts/utils/money.js";
+
 export function getProduct(productId) {
   let matchingProduct =
     products.find(products => products.id === productId);
   return matchingProduct;
+}
+
+class Product{
+  id;
+  image;
+  namereating;
+  priceCents;
+
+  constructor(Prodict) {
+    this.id = Prodict.id;
+    this.image = Prodict.image;
+    this.name = Prodict.name;
+    this.rating = Prodict.rating;
+    this.priceCents = Prodict.priceCents;
+  }
+
+  getStarsUrl(){
+    return `images/ratings/rating-${this.rating.stars*10}.png`;
+  }
+  getPrice() {
+    return `$${centsToDollars(this.priceCents)}`;
+  }
+}
+
+class Clothing extends Product {
+  
 }
 
 export const products = [
@@ -663,4 +691,5 @@ export const products = [
       "mens"
     ]
   }
-];
+].map((product) => {return new Product(product)});
+console.log(products);
