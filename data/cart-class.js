@@ -1,9 +1,9 @@
 class Cart{
   cartItems;
-  lockalStorageKey;
+  #lockalStorageKey;
 
 constructor(localStorageKey){
-  this.lockalStorageKey = localStorageKey;
+  this.#lockalStorageKey = localStorageKey;
   this.loadFromStorage();
 }
 
@@ -66,9 +66,6 @@ constructor(localStorageKey){
 
 const cart = new Cart('cart-oop');
 const businessCart = new Cart('cart-business');
-
-cart.lockalStorageKey = 'cart-oop';
-businessCart.lockalStorageKey = 'cart-business';
 
 cart.loadFromStorage();
 businessCart.loadFromStorage();
