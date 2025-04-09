@@ -26,10 +26,25 @@ class Product{
   getPrice() {
     return `$${centsToDollars(this.priceCents)}`;
   }
+  extraInForm(){
+    return '';
+  }
 }
 
 class Clothing extends Product {
-  
+  sizeChartLink;
+
+  constructor(productDetails){
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInForm(){
+    return `
+    <a href="${this.sizeChartLink}" target="_blank">
+    Size chart</a>
+    `;
+  }
 }
 
 export const products = [
@@ -691,5 +706,9 @@ export const products = [
       "mens"
     ]
   }
-].map((product) => {return new Product(product)});
-console.log(products);
+].map((product) =>{
+  if(product.type === "clothing") {
+    return new Clothing(product);
+  }
+  
+  return new Product(product)});
