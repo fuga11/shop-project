@@ -6,11 +6,7 @@ import { loadCart } from "../data/cart.js";
 //import "../data/cart-class.js";
 
 Promise.all([
-  new Promise((resolve) => {
-    loadProduct(() => {
-    resolve('load product complite');
-    });
-  }),
+  loadProduct(),
   new Promise((resolve) => {
     loadCart(() => {
       resolve('load cart complite');
