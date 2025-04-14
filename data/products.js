@@ -61,14 +61,16 @@ export function loadProduct(){
         return new Product(product)
       });
       console.log('load products');
-    });
+    }).catch((error) => {
+      console.log(error);
+      });
   return promise;
 }
-/*
-loadProductsFetch().then(() => {
+
+loadProduct().then(() => {
 
 });
-export function loadProduct(fun){
+export function loadProducts(fun){
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load',() => {
@@ -82,13 +84,17 @@ export function loadProduct(fun){
     console.log('load products');
 
     fun();
-  })
+  });
+
+  xhr.addEventListener('error',() => {
+    console.log('Uenxpected error');
+  });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products')
   xhr.send();
   
 }
-*/
+
 /*
 export const products = [
   {

@@ -7,13 +7,18 @@ import { loadCart } from "../data/cart.js";
 
 
 async function loadpage() {
-
-  await loadProduct();
-  const value = await new Promise((resolve) => {
-    loadCart(() => {
-      resolve('value3');
+  try{
+    await loadProduct();
+    const value = await new Promise((resolve,reject) => {
+      loadCart(() => {
+        //reject('error loading cart');
+        resolve('value3');
+      });
     });
-  });
+
+  } catch(error){
+    console.log('error', error);
+  }
   renderCheckoutHeader();
   renderOrderSummary();
   renrderPaymentSummary();
